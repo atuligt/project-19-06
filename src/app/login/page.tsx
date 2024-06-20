@@ -8,18 +8,18 @@ import Header from "../components/Header";
 const page = () => {
   const [email, setemail] = useState("");
   const [password, setPassword] = useState("");
-
+  const [loginerror, setloginerror] = useState("");
   const [loader, setloader] = useState(false);
   const router = useRouter();
 
   const handleChangeemail = (event: React.ChangeEvent<HTMLInputElement>) => {
     setemail(event.target.value);
-    console.log(isButtonDisabled);
+    
   };
 
   const handleChangePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
-    console.log(isButtonDisabled);
+   
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -36,10 +36,12 @@ const page = () => {
         },
       });
       setloader(false);
-      console.log(reponse.data.token);
+     
       if (reponse.data.token) {
         localStorage.setItem("token", reponse.data.token);
         router.push(`/dashboard`);
+      }else{
+        setloginerror(reponse.data.worning);
       }
     } catch (error) {
       console.log(error);
@@ -47,7 +49,7 @@ const page = () => {
   };
 
   const isButtonDisabled = email === "" || password === "";
-
+  console.log(loginerror);
   return (
     <>
       <Header />
@@ -57,6 +59,7 @@ const page = () => {
             <div className="text-center pb-8">
               <h4 className="text-white text-xl">Login</h4>
             </div>
+            <div className="text-red-500 text-sm">{loginerror}</div>
             <div className="inner-login-form ">
               <form className="flex flex-col" onSubmit={handleSubmit}>
                 <input
@@ -106,7 +109,7 @@ const page = () => {
                   Don't Have Account?{" "}
                   <Link
                     href="/register"
-                    className=" text-[#9f9a9a]hover:underline "
+                    className=" text-[#9f9a9a] hover:underline "
                   >
                     Register Here
                   </Link>

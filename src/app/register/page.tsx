@@ -18,7 +18,7 @@ const page = () => {
   const router = useRouter();
   const handleregister = async(values:  TcreateUser )=>{
     try {
-        console.log("call")
+     
         const reponse = await axios.post("http://localhost:1000/register", {
             method: 'POST',
             values,
@@ -35,7 +35,7 @@ const page = () => {
             }, 2000);
             
           }
-          console.log(reponse)
+         
     } catch (error) {
         console.log(error);
     }
@@ -117,10 +117,10 @@ const page = () => {
        onSubmit={values => {
          if(values.password !== values.cpassword){
             seterrot_password("password and conform password are not matching")
-            console.log("password and conform password noot matching")
+          
          }else{
             setloader(true);
-            console.log(values);
+            
             handleregister(values as TcreateUser)
          }
          
@@ -230,7 +230,7 @@ const page = () => {
             
               <p className="text-sm text-white">
                 Already have an account?{" "}
-                <Link href="/login" className=" text-[#9f9a9a]hover:underline ">
+                <Link href="/login" className=" text-[#9f9a9a] hover:underline ">
                   Login Here
                 </Link>
               </p>

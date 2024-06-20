@@ -10,7 +10,7 @@ type Tprops = {
 }
 
 const Header = (props: Tprops) => {
-    console.log(props.token);
+    
 
     if(!props.token){
       console.log("hello")

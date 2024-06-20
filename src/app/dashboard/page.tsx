@@ -18,7 +18,7 @@ const page = () => {
   const getData = async () => {
     try {
         const token = localStorage.getItem("token");
-        console.log(localStorage.getItem("token"));
+   
       const response = await axios.get("http://localhost:1000/fetch-user", {
         headers: {
           "Content-Type": "application/json",
@@ -30,7 +30,6 @@ const page = () => {
       }
 
         setlogout(true);
-        console.log(response);
         const data = response.data;
         setname(data.name);
         setemail(data.email);
